@@ -1,10 +1,12 @@
 <?php
-	require_once './api.php';
-		
+	header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+	header('content-type: application/json; charset=utf-8');
+	//header('Access-Control-Allow-Headers: Authorization');
 
-	header('Access-Controll-Allow-Origin: *');
-	
-	
+	require_once './api.php';
 
 	if($_SERVER['REQUEST_METHOD']=='POST'){	
 		$accion 		= $_POST['accion'];		
@@ -43,8 +45,7 @@
 
 	if($_SERVER['REQUEST_METHOD']=='GET'){
 
-		//CONSULTAR CLIENTE
-		if($_GET['accion'] == 'consultar_cliente'){
+		//CONSULTAR CLIENTE		
 			if(isset($_GET['id'])){		
 				$id = $_GET['id'];						
 				$cliente = consultarCliente($id);			
@@ -54,7 +55,7 @@
 				
 				echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
 			}
-		}
+		
 	}
 
 ?>

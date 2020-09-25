@@ -1,6 +1,6 @@
 <?php
 
-
+header('Access-Control-Allow-Origin: *');	
 	require_once 'config/bootstrap.php';
 	require_once __DIR__.'\src\Entities\Cliente.php';	
 	require_once __DIR__.'\src\Entities\Billetera.php';	
@@ -94,8 +94,9 @@
 
 		return $respuesta;
 		
-	}	
+	}
 
+	
 	function consultarSaldo($data){
 		global $entityManager;
 		$em = $entityManager;
