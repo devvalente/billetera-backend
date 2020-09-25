@@ -1,0 +1,53 @@
+Clientes:
+    type: entity
+    table: clientes
+    uniqueConstraints:
+        UC_clientes_documento:
+            columns:
+                - documento
+        UC_clientes_email:
+            columns:
+                - email
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        documento:
+            type: string
+            nullable: false
+            length: 11
+            options:
+                fixed: false
+        primerNombre:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: primer_nombre
+        primerApellido:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: primer_apellido
+        email:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        celular:
+            type: string
+            nullable: false
+            length: 15
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

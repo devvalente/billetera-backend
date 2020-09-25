@@ -1,0 +1,29 @@
+Billeteras:
+    type: entity
+    table: billeteras
+    indexes:
+        FK_billeteras_documento:
+            columns:
+                - documento_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        documentoId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: documento_id
+        saldo:
+            type: decimal
+            nullable: true
+            precision: 7
+            scale: 2
+    lifecycleCallbacks: {  }
