@@ -94,9 +94,20 @@
 
 		return $respuesta;
 		
-	}
+	}	
 
-	
+	function consultarSaldo($data){
+		global $entityManager;
+		$em = $entityManager;
+
+		$entity = $em->getRepository('Billetera');
+		$billetera = $entity->findBy(array("documentoId" => $data[0]));	
+			$billeteraX = [];
+			$billeteraX['documento'] = $billetera[0]->getDocumentoId();		
+			$billeteraX['saldo']     = $billetera[0]->getSaldo();	
+			$billeteraX['divisa']	 = "Pesos";
+		return $billeteraX;		
+	}
 
 
 ?>
