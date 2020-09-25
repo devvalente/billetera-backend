@@ -7,7 +7,36 @@
 
 	$GLOBALS['entityManager'];	
 
-	
+	function consultarCliente($id){
+		global $entityManager;
+		$em = $entityManager;
+
+		if($id > 0){			
+			$cliente = $em->find('Cliente', $id);
+				$clienteA['id']     	    = $cliente->getId();
+				$clienteA['documento']		= $cliente->getDocumento();
+				$clienteA['primerNombre']   = $cliente->getPrimerNombre();
+				$clienteA['primerApellido'] = $cliente->getPrimerApellido();
+				$clienteA['email']    		= $cliente->getEmail();
+				$clienteA['celular']  		= $cliente->getCelular();				
+				return $clienteA;			
+		}else{
+			$entity = $em->getRepository('Cliente');
+			$clientes = $entity->findAll();
+			foreach ($clientes as $cliente) {
+				$clienteX[] = [
+						'id'       		 => $cliente->getId(),
+						'documento'		 => $cliente->getDocumento(),
+						'primerNombre'   => $cliente->getPrimerNombre(),
+						'primerApellido' => $cliente->getPrimerApellido(),
+						'email'    		 => $cliente->getEmail(),
+						'celular'  		 => $cliente->getCelular()
+				];
+			}				
+			return $clienteX;
+		}
+
+	}
 
 	function registrarCliente($documento, $primerNombre, $primerApellido, $email, $celular){
 		global $entityManager;
