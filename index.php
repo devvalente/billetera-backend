@@ -17,6 +17,16 @@
 			$email 			= $_POST['email'];
 			$celular 		= $_POST['celular'];
 			registrarCliente($documento, $primerNombre, $primerApellido, $email, $celular);	
+		}		
+
+		//RECARGAR BILLETERA
+		if($accion == 'recargar_billetera'){
+			$data = [];
+				$data[0]= $_POST['documento'];				
+				$data[1]= $_POST['celular'];
+				$data[2]= $_POST['valor'];
+			$respuesta = recargarBilletera($data);
+			echo json_encode($respuesta, JSON_NUMERIC_CHECK);
 		}
 
 		

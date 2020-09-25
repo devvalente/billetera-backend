@@ -72,6 +72,30 @@
 		echo "Se ha registrado la billetera y el usuario exitosamente.";
 	}
 	
+	function recargarBilletera($data){
+		global $entityManager;
+		$em = $entityManager;
+
+		//Buscar el documento según el número de celular
+		$cliente = $em->getRepository('Cliente')->findOneBy(array("documento"=>$data[0], "celular"=>$data[1]));		
+		//Recargar el saldo
+		$billetera = $em->getRepository('Billetera')->findOneBy(array("documentoId"=>$cliente->getDocumento()));
+			$saldoAnterior = $billetera->getSaldo();
+			$billetera->setSaldo($saldoAnterior + $data[2]);
+			$em->persist($billetera);
+			$em->flush($billetera);
+
+		$respuesta = [];
+			$respuesta['respuesta']			= 'Ok';
+			$respuesta['documento']			= $cliente->getDocumento();
+			$respuesta['celular']  			= $cliente->getCelular();
+			$respuesta['saldoAnterior']    	= $saldoAnterior;
+			$respuesta['saldo']    			= $billetera->getSaldo();
+
+		return $respuesta;
+		
+	}
+
 	
 
 
